@@ -159,7 +159,8 @@ int main ()
     	printf("Escolha a opção desejada do menu: \n\n");
 		printf("\t1 - Registrar nomes \n");
 		printf("\t2 - Consultar nomes \n");
-    	printf("\t3 - Deletar nomes \n\n");      
+    	printf("\t3 - Deletar nomes \n");      
+    	printf("\t4 - Sair do sistema \n\n"); 
     	printf("Opcao:");						                 	//Fim do Menu
 	
 		scanf("%d", &opcao);				//Armazenando a escolha do usuario de acordo com a variavel
@@ -181,6 +182,10 @@ int main ()
 			deletar();                        //Chamada de funcao Deletar
 			break;
 		
+			case 4:
+			printf("Obrigado por utilizar o sistema de registros!\n");
+			return 0;
+			break;
 			
 			default:
 			printf("Essa nao é uma opcao válida\n");               
