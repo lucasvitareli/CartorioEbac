@@ -3,7 +3,7 @@
 #include <locale.h> //biblioteca de texto por regiao
 #include <string.h> //biblioteca responsavel por cuidar das string
 
-int registro ()                                       //Funcao responsavel por cadastrar os usuarios no sistema
+int registro ()                                         //Funcao responsavel por cadastrar os usuarios no sistema
 {														//Criando as variaveis/string
 	char arquivo[40];                                   
 	char cpf[40];
@@ -11,19 +11,19 @@ int registro ()                                       //Funcao responsavel por c
 	char sobrenome[40];
 	char cargo[40];
 	
-	printf("Digite o CPF a ser cadastrado: ");         //Coletando informacao do usuario
+	printf("Digite o CPF a ser cadastrado: ");         	//Coletando informacao do usuario
 	scanf("%s", cpf);                                	//Armazenando a informacao do usuario em string
 	
 	strcpy(arquivo, cpf);            					 //responsavel por copiar os valores das string
 	
 	FILE *file;                      						// Buscando em arquivos no sistema, criando arquivo
-	file = fopen(arquivo, "w");   							   // Abrindo arquivo e "w" funcao de escrita
-	fprintf(file,cpf);              							 // salvo o valor da variavel cpf dentro do arquivo
-	fclose(file);													// fechar o arquivo
+	file = fopen(arquivo, "w");   							// Abrindo arquivo e "w" funcao de escrita
+	fprintf(file,cpf);              						// salvo o valor da variavel cpf dentro do arquivo
+	fclose(file);											// fechar o arquivo
 	
-	file = fopen(arquivo, "a");      					//Abrindo o arquivo salvo e dando comando de atualizar
+	file = fopen(arquivo, "a");      						//Abrindo o arquivo salvo e dando comando de atualizar
 	fprintf(file, ",");                                 	//pedindo para salvar informacao 
-	fclose(file);                                               //Fechando o arquivo
+	fclose(file);                                           //Fechando o arquivo
 	
 	printf("Digite o nome a ser cadastrado: " );
 	scanf ("%s", nome);
@@ -58,38 +58,38 @@ int registro ()                                       //Funcao responsavel por c
 	fprintf(file, ",");
 	fclose(file);
 	
-	system("pause");                           // Pausando a tela para que o usuario nao volte ao menu automaticamente.
+	system("pause");                           											// Pausando a tela para que o usuario nao volte ao menu automaticamente.
 	
-}                                              // Fim da funcao Registro
+}                                             										    // Fim da funcao Registro
 
 int consulta ()
 {
-	setlocale(LC_ALL, "Portuguese");         //Definindo Linguagem p/portugues
+	setlocale(LC_ALL, "Portuguese");         											//Definindo Linguagem p/portugues
 
-	char cpf[40];                              //Criando variaveis novamente  
+	char cpf[40];                              											//Criando variaveis novamente  
 	char conteudo[200];
 		
-	printf("Digite o CPF a ser consultado: ");     //Pedindo para o usuario inserir o CPF desejado
-	scanf("%s", cpf);                                 // armazenando informacoes na variavel cpf
+	printf("Digite o CPF a ser consultado: ");     										//Pedindo para o usuario inserir o CPF desejado
+	scanf("%s", cpf);                                 									//Armazenando informacoes na variavel cpf
 	
-	FILE *file;                                             //Localizando o arquivo
-	file = fopen(cpf,"r");                                    //Abrindo o arquivo cpf, "r" para leitura
+	FILE *file;                                            								 //Localizando o arquivo
+	file = fopen(cpf,"r");                                  							 //Abrindo o arquivo cpf, "r" para leitura
 
-	if(file == NULL)                                            //Caso a informacao nao for encontrada no arquivo...
+	if(file == NULL)                                            						//Caso a informacao nao for encontrada no arquivo...
 {
-	printf("\n\nNumero de CPF não encontrado! \n\n");               //Exibir essa mensagem ao usuario
+	printf("\n\nNumero de CPF não encontrado! \n\n");               					//Exibir essa mensagem ao usuario
 	system("pause");
 }
-	while(fgets(conteudo, 200, file) != NULL)                      //Enquanto obtiver a o conteudo no arquivo, armazena informacao, caso contrario (NULL) volta para o menu
+	while(fgets(conteudo, 200, file) != NULL)                      						//Enquanto obtiver a o conteudo no arquivo, armazena informacao, caso contrario (NULL) volta para o menu
 {
-	printf("\nEssas são as informaçoes do usuario: \n\n");           //Exibir essa informacao para o usuario com os dados encontrados no arquivo
+	printf("\nEssas são as informaçoes do usuario: \n\n");           	                //Exibir essa informacao para o usuario com os dados encontrados no arquivo
 	printf("%s", conteudo);    
-	printf("\n\n");                                                    //Comando para pular linhas na exibicao.
+	printf("\n\n");                                                                     //Comando para pular linhas na exibicao.
 	
-	system("pause");                                                      // Pausando a tela para que o usuario nao volte ao menu automaticamente.
-}
+	system("pause");                                                                    // Pausando a tela para que o usuario nao volte ao menu automaticamente.
+} 
 		
-}                                         // Fim da funcao consulta
+}                                                                                       // Fim da funcao consulta
 	
 int deletar ()
 {
@@ -98,40 +98,40 @@ int deletar ()
 	printf("Digite o CPF do aluno a ser deletado: ");
 	scanf("%s", cpf);
 	
-	FILE *file;                                 // Abrindo o arquivo referente ao cpf e dando o comando "r" para leitura
+	FILE *file;                                                               // Abrindo o arquivo referente ao cpf e dando o comando "r" para leitura
 	file = fopen(cpf,"r");
 	
-	if (file == NULL)                          // Em caso de numero digitado nao encontrado no arquivo...
+	if (file == NULL)                                                         // Em caso de numero digitado nao encontrado no arquivo...
 	{
-		printf("O CPF digitado nao foi encontrado no sistema!. \n");        // Essa mensagem é exibida ao usuario
-		system("pause");                                                      // Comando que pausa na tela atual
-		return 0;                    // Comando que faz o usuario retornar a tela inicial
+		printf("O CPF digitado nao foi encontrado no sistema!. \n");           // Essa mensagem é exibida ao usuario
+		system("pause");                                                        // Comando que pausa na tela atual
+		return 0;                                                                // Comando que faz o usuario retornar a tela inicial
 	}
 	
-	fclose(file);                                             // Fechar o arquivo depois de verificar a existencia dele
+	fclose(file);                                                               // Fechar o arquivo depois de verificar a existencia dele
 		
-	printf("Deseja deletar este aluno do sistema? ");            // Confirmando a escolha do usuario sobre deletar ou nao este aluno
+	printf("Deseja deletar este aluno do sistema? ");                           // Confirmando a escolha do usuario sobre deletar ou nao este aluno
 	printf("%s",cpf);                                                
-	printf("\nDigite (s) para sim ou digite (n) para nao! \n\n");  // Dando escolhas de caracteres para o usuario fazer a escolha
+	printf("\nDigite (s) para sim ou digite (n) para nao! \n\n");               // Dando escolhas de caracteres para o usuario fazer a escolha
 	
-	getchar();                       // Funcao para capturar a entrada do usuario atraves de caracteres
+	getchar();                                                                  // Funcao para capturar a entrada do usuario atraves de caracteres
 	
-	char opcao;                        // criando variavel opcao
-	opcao = getchar();                    // definindo que a variavel opcao sera referente ao getchar (caractere que iremos estipular)
+	char opcao;                                                                  // criando variavel opcao
+	opcao = getchar();                                                           // definindo que a variavel opcao sera referente ao getchar (caractere que iremos estipular)
 		
-	if (opcao == 's' || opcao == 'S')           // se o caractere digitado for s minisculo ou S maiusculo
+	if (opcao == 's' || opcao == 'S')                                            // se o caractere digitado for s minisculo ou S maiusculo
 	{
-	if (remove(cpf) == 0)                        // remove o arquivo cpf e confere se a remocao foi bem sucedida
+	if (remove(cpf) == 0)                                                        // remove o arquivo cpf e confere se a remocao foi bem sucedida
 	{
-		printf("Aluno deletado com sucesso!\n");     // caso bem sucedida, insere a mensagem para o usuario saber
+		printf("Aluno deletado com sucesso!\n");                                 // caso bem sucedida, insere a mensagem para o usuario saber
 	}
 		system("pause");
 	}
 	
 	
-	else if (opcao == 'n' || opcao == 'N')               // se o caractere digitado for n minusculo ou N maiusculo
+	else if (opcao == 'n' || opcao == 'N')                                        // se o caractere digitado for n minusculo ou N maiusculo
 	{
-		printf("Retorne ao menu principal \n");            // Essa mensagem sera mostrada para o usuario
+		printf("Retorne ao menu principal \n");                                   // Essa mensagem sera mostrada para o usuario
 		system("pause");
 	}
 		
@@ -140,46 +140,60 @@ int deletar ()
 		printf("\nOpcao invalida, retorne ao menu\n\n");                            // Mensagem mostrada caso o usuario digite outro caractere que nao seja (s) ou (n)
 		system("pause");
 	}
-	}                                         // Fim da funcao deletar
+	}                                                                               // Fim da funcao deletar
 
 	
 int main ()
-{
-    int opcao=0;	        //Definindo variaveis
+	{
+    setlocale (LC_ALL, "Portuguese");                                               // Definindo Linguagem para Portugues
+	int opcao=0;	                                                                // Definindo variaveis
     int laco=1;
+    char senhadigitada[10]="a";														// Criando string para senha digitada pelo usuario
+    int comparacao;																	// Criando variavel para comparacao
     
-    for(laco=1;laco=1;)                         // Criando laco
+    printf("### Cartório da EBAC ###\n\n");
+    printf("Login de administrador\n\n Digite a sua senha:");						//Pedindo ao usuario para que ele digite a senha de acesso
+    scanf("%s",senhadigitada);														//Armazenando os dados digitados na string criada anteriormente
+    
+    comparacao = strcmp(senhadigitada, "admin"); 									//Definindo a variavel comparacao com  o resultado entre a string senhadigitada e a palavra chave estipulada
+       
+																					//Se o valor digitado bater com a senha "admin", o resultado é "0", indicando que nao ha diferenca na comparacao
+    
+    if(comparacao == 0)																//Criando condicao para que caso o resultado seja "0", o Menu seja apresentado na tela para o usuario utilizar
     {
+    	system ("cls");																		// Comando para limpar a tela 
+	    for(laco=1;laco=1;)                                              					// Criando laco
+    	{
     	
-		system("cls");                         //Apagando mensagens da tela 
+		system("cls");                        												//Apagando mensagens da tela 
 		
-		setlocale(LC_ALL, "Portuguese");         //Definindo Linguagem para Portugues    
+		setlocale(LC_ALL, "Portuguese");         											//Definindo Linguagem para Portugues    
 	
-		printf("### Cartório da EBAC ###\n\n");                      //Inicio do Menu                       
+		printf("### Cartório da EBAC ###\n\n");                     					    //Inicio do Menu                       
     	printf("Escolha a opção desejada do menu: \n\n");
 		printf("\t1 - Registrar nomes \n");
 		printf("\t2 - Consultar nomes \n");
     	printf("\t3 - Deletar nomes \n");      
     	printf("\t4 - Sair do sistema \n\n"); 
-    	printf("Opcao:");						                 	//Fim do Menu
+    	printf("Opcao:");						                 							//Fim do Menu
 	
-		scanf("%d", &opcao);				//Armazenando a escolha do usuario de acordo com a variavel
+		scanf("%d", &opcao);																//Armazenando a escolha do usuario de acordo com a variavel
 	
-		system("cls");                      //Apagando mensagens da tela 
+		system("cls");                     												    //Apagando mensagens da tela 
 		
 		
-		switch(opcao)                    //Inicio da selecao MENU
-		{
+		switch(opcao)                  													    //Inicio da selecao MENU
+			{
 			case 1:                    
-			registro();                     //Chamada de funcao Registro
-			break;
+			registro();                   												    //Chamada de funcao Registro
+			break;	
 	
 			case 2:
-			consulta();                      //Chamada de funcao Consulta
+			consulta();                                                                    //Chamada de funcao Consulta
 			break;
 		
 			case 3:
-			deletar();                        //Chamada de funcao Deletar
+			deletar();                                                                     //Chamada de funcao Deletar
 			break;
 		
 			case 4:
@@ -191,8 +205,11 @@ int main ()
 			printf("Essa nao é uma opcao válida\n");               
 			system("pause");
 			break;
-		}                                      //Fim da selecao
-		
-	}                                             //Fim do laco
+			}                                      											//Fim da selecao
+		}																			 	    //Fim do laco
+	}                                                										//Fim funcao if
 	
-}                                                    //Fim da funcao int main
+	else
+		printf("Senha incorreta!");
+	
+	}                                                    									//Fim da funcao int main
